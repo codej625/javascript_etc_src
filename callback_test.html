@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+    <script>
+        function callbackTest(obj1){
+            alert('시작')
+            obj1();
+        }
+
+        function callbackTest2(){
+            alert('2')
+           
+        }
+
+        function callbackTest3(obj2){
+            return obj2();
+        }
+    </script>
+
+    <button onclick="callbackTest3(callbackTest(callbackTest2()))">click</button>
+
+</body>
+</html>
