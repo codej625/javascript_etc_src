@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arrow function</title>
+</head>
+<body>
+    <button onclick="test();">test button</button>
+    <script>
+        // es6 에서 추가된 이름없는 함수를 직관적이게 선언할 수 있는 arrow function
+
+        // es5
+        var es5 = function () {
+            alert('es5')
+        }
+        // es6
+        let es6 = () => {
+            alert('es6')
+        }
+
+        // es5
+        es5 = function (a) {
+            return a;
+        }
+        // es6
+        es6 = (a) => {
+            return a;
+        }
+
+        // argument 의 갯수나 return 값에 따라 간소화가 가능
+        (a) => {a};
+        (a) => a;
+        a => {a};
+        a => a;
+
+        // no arguments
+        const a = 1;
+        const b = 2;
+        // es5
+        es5 = function (){
+            return a + b;
+        }
+        // es6 Arrow Function (no arguments)
+        es6 = () => a + b;
+
+
+        // ex)
+        // Traditional function example
+        var obj = {
+            count : 10,
+            doSomethingLater : function (){
+                setTimeout(function(){ // the function executes on the window scope
+                    this.count++;
+                    console.log(this.count);
+                }, 300);
+            }
+        }
+        obj.doSomethingLater(); // console prints "NaN", because the property "count" is not in the window scope.
+
+        // Arrow function example
+        var obj = {
+            count : 10,
+            doSomethingLater : function(){
+                // The traditional function binds "this" to the "obj" context.
+                setTimeout( () => {
+                    // Since the arrow function doesn't have its own binding and
+                    // setTimeout (as a function call) doesn't create a binding
+                    // itself, the "obj" context of the traditional function will
+                    // be used within.
+                    this.count++;
+                    console.log(this.count);
+                }, 300);
+            }
+        }
+        obj.doSomethingLater();
+
+    </script>
+</body>
+</html>
