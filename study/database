@@ -1,3 +1,5 @@
+# sql
+
 데이터 입력 Ex)
 INSERT INTO table_name(empno, ename, job) VALUES(1200, 'JAMES', 'CLERK');
 
