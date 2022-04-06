@@ -6,7 +6,7 @@ try {
 catch(Exception1 e1) {
 
 }
-// ExceptionN이 발생했을 경우, 이를 처리하기 위한 로직
+// Exception이 발생했을 경우, 이를 처리하기 위한 로직
 catch(Exception2 e2) { 
 
 }
