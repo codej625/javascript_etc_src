@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+
+<body>
+    <script>
+        // Java에서의 this는 인스턴스 자신(self)을 가리키는 참조변수이다. 
+        // ex)
+
+        /*
+            public Class Person {
+                
+                private String name;
+                
+                public Person(String name) {
+                    // 여기서 this는 인자가 아닌 객체를 가르킨다.
+                    this.name = name;
+                }
+            }
+        */
+
+        
+        // 하지만 자바스크립트의 경우 Java와 같이 this에 바인딩되는 객체는 한가지가 아니라 
+        // 해당 함수 호출 방식에 따라 this에 바인딩되는 객체가 달라진다.
+        // 즉, 함수를 호출할 때 함수가 어떻게 호출되었는지에 따라 this에 바인딩할 객체가 동적으로 결정된다.
+
+        // 함수의 호출 방식
+        /*
+            1. 함수 호출
+            2. 메소드 호출
+            3. 생성자 함수 호출
+            4. apply/call/bind 호출
+        */
+
+        // 함수호출에서 전역객체(Global Object)는 모든 객체의 유일한 최상위 객체를 의미
+        /*
+            *in browser console
+            this === window // true
+
+            *in Terminal
+            node
+            this === global // true
+        */
+            
+        // ex)
+        var foo = function () {
+            console.dir(this);
+        };
+
+        // 1. 함수 호출
+        foo(); // window
+        // window.foo();
+
+        // 2. 메소드 호출
+        var obj = { foo: foo };
+        obj.foo(); // obj
+
+        // 3. 생성자 함수 호출
+        var instance = new foo(); // instance
+
+        // 4. apply/call/bind 호출
+        var bar = { name: 'bar' };
+        foo.call(bar);   // bar
+        foo.apply(bar);  // bar
+        foo.bind(bar)(); // bar
+
+
+        // 함수가 객체의 프로퍼티 값이면 메소드로서 호출된다. 
+        // 이때 메소드 내부의 this는 해당 메소드를 소유한 객체, 즉 해당 메소드를 호출한 객체에 바인딩된다.
+        // ex)
+
+        var obj1 = {
+            name: 'Lee',
+            sayName: function () {
+                console.log(this.name);
+            }
+        }
+
+        var obj2 = {
+            name: 'Kim'
+        }
+
+        obj2.sayName = obj1.sayName;
+
+        obj1.sayName();
+        obj2.sayName();
+
+        // 자료제공 
+        // 출처 https://poiemaweb.com/
+    </script>
+</body>
+
+</html>
