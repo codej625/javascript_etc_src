@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>example</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 1920px;
+            width: auto;
+            padding: 10px 10px;
+            border: 1px solid;
+        }
+        .container > div > div:nth-child(1) {
+            height: 600px;
+            margin: 10px 10px;
+            background-color: #ededed;
+        }
+        .container > div:first-child > div:nth-child(1) > p > img {
+            width: 500px;
+            height: 500px;
+        }
+        .container > div > div:nth-child(2) {
+            height: 200px;
+            margin: 10px 10px;
+            background-color: #ededed;
+        }
+        .container > div:nth-child(2) {
+            margin: 10px 10px;
+        }
+        .container>div:nth-child(2)>button {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main_view">
+            <div>
+                <p><img id="image" src="./img/사진_03.jpg" alt=""></p>
+            </div>
+            <div>
+                <p id="text">talk_box</p>
+            </div>
+        </div>
+        <div>
+            <button id="button" onclick="view(0)">view_change</button>
+            <button id="button" onclick="view(1)">view_change</button>
+        </div>
+    </div>
+    <script>
+        /* 전역 변수 선언부 */
+        const text = 'Lorem ipsum dolor sit amet consectetur adipisicing elit.';
+        const text_01 = '안녕';
+        const text_02 = '깻잎논쟁';
+        const text_03 = 'hello';
+        const text_04 = '어쩔티비';
+        let i = 0;
+        // setTimeout에 사용할 speed값이 담긴 변수
+        const goTextSpeed = 50;
+
+        const view = (number) => {
+            const image = document.getElementById('image');
+            if (number == false) {
+                image.src = './img/사진_01.jpg';
+                autoText(0);
+            } else {
+                image.src = './img/사진_02.jpg';
+                autoText(1);
+            }
+        }
+        const autoText = (number) => {
+            console.log("number->" + number)
+            let text_01 = document.getElementById('text');
+            text_01.innerHTML = '';
+            if(number == 0){
+                for(; i < text.length ; i++){
+                    text_01.innerHTML += text.charAt(i);
+                }
+                i = 0;
+            } else {
+                for(; i < text_02.length ; i++){
+                    text_01.innerHTML += text_02.charAt(i);
+                }
+                i = 0;
+            }
+        }
+
+        // document.addEventListener("DOMContentLoaded", function(){
+        // });
+    </script>
+</body>
+
+</html>
