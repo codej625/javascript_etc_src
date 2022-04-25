@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addEventListener</title>
+</head>
+
+<body>
+    <input type="button" id="target" value="button" />
+
+    <input type="button" id="target1" value="button1" />
+    <input type="button" id="target2" value="button2" />
+    <script>
+        // ex01)
+        // id를 가져와서 변수를 초기화
+        const i = document.getElementById('target');
+
+        // addEventListener click event를 사용
+        i.addEventListener('click', function (event) {
+            alert('Hello world, ' + event.target.value);
+        });
+
+        // ex02)
+        // id를 가져와서 변수를 초기화
+        const t1 = document.getElementById('target1');
+        const t2 = document.getElementById('target2');
+        // id를 switch문으로 구별한다.
+        function btn_listener(event) {
+            switch (event.target.id) {
+                case 'target1':
+                    alert(1);
+                    break;
+                case 'target2':
+                    alert(2);
+                    break;
+            }
+        }
+        // 이벤트 객체를 이용하면 복수의 엘리먼트에 하나의 리스너를 등록해서 재사용할 수 있다.
+        t1.addEventListener('click', btn_listener);
+        t2.addEventListener('click', btn_listener);
+    </script>
+</body>
+
+</html>
