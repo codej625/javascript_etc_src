@@ -76,20 +76,14 @@
             }
         }
         const autoText = (number) => {
-            console.log("number->" + number)
-            let text_01 = document.getElementById('text');
-            text_01.innerHTML = '';
+            document.getElementById('text').innerHTML = text;
             if(number == 0){
-                for(; i < text.length ; i++){
-                    text_01.innerHTML += text.charAt(i);
+                for(i; i < text.length; i++){
+                    text.charAt(i);
+                    setTimeout(autoText, 400)
                 }
-                i = 0;
-            } else {
-                for(; i < text_02.length ; i++){
-                    text_01.innerHTML += text_02.charAt(i);
-                }
-                i = 0;
             }
+
         }
 
         // document.addEventListener("DOMContentLoaded", function(){
