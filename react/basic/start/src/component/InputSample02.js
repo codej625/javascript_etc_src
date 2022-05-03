@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 const InputSample = () => {
-
+    // useState 함수 호출 배열을 반환
+    // 첫번째 원소는 현재 상태, 두번째 원소는 Setter 함수
     const [inputs, setInputs] = useState({
         name: '',
         nickname: ''
@@ -13,6 +14,10 @@ const InputSample = () => {
         const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
         console.log(JSON.stringify("name-> " + name))
         console.log(JSON.stringify("value-> " + value))
+        console.log({...inputs})
+        console.log(name)
+        console.log(value)
+
         setInputs({
             ...inputs, // 기존의 input 객체를 복사한 뒤
             [name]: value // name 키를 가진 값을 value 로 설정

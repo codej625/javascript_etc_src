@@ -36,7 +36,7 @@ const App = () => {
       <InputSample />
 
       <InputSample02 />
-
+    
 
       
     </Wrapper>
