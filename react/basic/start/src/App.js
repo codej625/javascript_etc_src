@@ -6,6 +6,8 @@ import Counter from './component/Counter.js';
 import InputSample from './component/InputSample.js';
 import InputSample02 from './component/InputSample02.js';
 import InputSample03 from './component/InputSample03.js';
+import UserList from './component/UserList.js';
+
 
 const App = () => {
   const style = {
@@ -40,7 +42,7 @@ const App = () => {
 
       <InputSample03 />
     
-
+      <UserList />
       
     </Wrapper>
 
