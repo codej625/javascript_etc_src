@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="mapTest()">test</button>
+
+    <script>
+        const arrayObject = [
+            {label: 'contentscode', order: 'asc', id: 'contentscode', contentscode: true},
+            {label: 'userdata', order: 'asc', id: 'userdata', userdata: true},
+            {label: 'extradata', order: 'asc', id: 'extradata', extradata: false}
+        ];
+
+        const mapTest = () => arrayObject.map((data, idx) => {
+            console.log(`${idx} + ${data[data.label]}`)
+        });
+
+    </script>
+</body>
+</html>
