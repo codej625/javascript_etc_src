@@ -40,9 +40,17 @@
     const { 자바, 파이썬 } = { '자바': '스프링', '자바스크립트': '리액트', '파이썬': '장고' };
     console.log('object => ', 자바 + ', ' + 파이썬)
 
-    /* array destructuring 순서대로 할당된다.  **********************************************/
+    /* array destructuring 순서대로 할당된다. ***********************************************/
     const [python, php] = ['java', 'javascript', 'python', 'php', 'c'];
     console.log('array => ', python + ', ' + php)
+    
+    /* useState hook과 spread 연산자 *********************************************************
+    함수형 컴포넌트에서 state 관리를 위한 hook useState(...)는 class형 컴포넌트 state의 특정 키/값 쌍에 대응한다.
+    풀어서 설명하자면, class형 컴포넌트의 this.state.<키> == 함수형 컴포넌트의 useState(...)[0] 
+    class형 컴포넌트의 this.setState({키: 값}) == 함수형 컴포넌트의 useState(...)[1](값)
+    본문에서 state setter에서 spread 연산자를 사용한 이유는 저 값이 object타입이기 때문입니다. 
+    함수형 컴포넌트에서 useState로 관리하는 어떤 state 값이 object 타입이 아니거나, class형 컴포넌트일 경우 spread 연산자를 사용할 필요가 없습니다.
+    *****************************************************************************************/
   </script>
 </body>
 
