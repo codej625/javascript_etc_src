@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>object_array</title>
+</head>
+
+<body>
+
+  <script>
+    /* test global variable *****************************************************************/
+    const object = { '자바': '스프링', '자바스크립트': '리액트', '파이썬': '장고' };
+    const array = ['java', 'javascript', 'python', 'php', 'c'];
+
+    /* object속에 array 꺼내오기 ************************************************************/
+    const object_array = {
+      'languages': 'java, spring',
+      'like': [
+        'javascript',
+        'php',
+        'c'
+      ]
+    }
+    console.log(object_array['languages'])
+    console.log(object_array['like'])
+    console.log(object_array['like'][0])
+
+    /* array속에 object 꺼내오기 ************************************************************/
+    const array_object = [
+      { 'java': 'spring', 'php': 'laravel' },
+      { 'javascript': 'react', 'python': 'django' }
+    ]
+    console.log(array_object[0].java)
+    console.log(array_object[0]['php'])
+
+    /* object destructuring key값으로 할당된다. *********************************************/
+    const { 자바, 파이썬 } = { '자바': '스프링', '자바스크립트': '리액트', '파이썬': '장고' };
+    console.log('object => ', 자바 + ', ' + 파이썬)
+
+    /* array destructuring 순서대로 할당된다.  **********************************************/
+    const [python, php] = ['java', 'javascript', 'python', 'php', 'c'];
+    console.log('array => ', python + ', ' + php)
+  </script>
+</body>
+
+</html>
