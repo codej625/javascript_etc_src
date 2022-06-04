@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>react_array_map</title>
+</head>
+
+<body>
+  <!-- ex 01) -->
+  
+  <>
+    {
+      users.map((data, index) => {
+        return (<component idx="data.idx" username="data.username" email="email" />)
+      })
+    }
+  </>
+  <!-- ex 02) -->
+  <>
+    {
+      users.map(data => (
+        <component idx="data.idx" username="data.username" email="email" />
+      )
+    }
+  </>
+  <!-- ex 03) -->
+  <>
+    {map}
+  </>
+
+
+</body>
+
+<script>
+  /*************************************************************************************************/
+  const users = [
+    {
+      idx: 1,
+      username: "cocoon",
+      email: "asd123@gmail.com",
+    },
+    {
+      idx: 2,
+      username: "ultra",
+      email: "qwe555@example.com",
+    },
+    {
+      idx: 3,
+      username: "hozae",
+      email: "zxc789@example.com",
+    },
+  ];
+  /*************************************************************************************************/
+  const map = users.map((data, idx) => (<component idx="data.idx" username="data.username" email="email" />));
+
+</script>
+</body>
+
+</html>
