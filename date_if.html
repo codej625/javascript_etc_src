@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>date_if</title>
+</head>
+
+<body>
+  <script>
+    // date 객체 생성
+    const day = new Date();
+    // 'yyyy-MM-dd' 형식으로 날짜 생성
+    const today = day.toISOString().substring(0,10);	
+    // 시간 생성
+    const time = day.getHours();
+
+    const d_day = '2022-06-06';
+
+    // if 현재 시간이 9시보다 크거나 같고 && 현재 시간이 18시보다 작다.
+    // parent if=============================
+    if (time >= 9 && time < 18) {
+      // 위에 parent if 조건이 맞으면 child if문을 실행
+      // child if============================
+      // if 오늘 날짜가 '2022-06-06'이 아니면 실행
+      if (today !== d_day) {
+        alert('오늘은 ' + today + ' 입니다.')
+      // if 오늘 날짜가 '2022-06-06'이면 같으면 실행
+      } else if (today === d_day) {
+        alert('오늘은 ' + today + ' 입니다.')
+      }
+    // parent if 조건문이 맞지 않으면 실행
+    // parent else===========================
+    } else {
+      alert('현재 시각은 ' + time + '시 입니다.')
+    }
+  </script>
+</body>
+
+</html>
