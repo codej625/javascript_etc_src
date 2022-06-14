@@ -31,10 +31,16 @@
     /* array속에 object 꺼내오기 ************************************************************/
     const array_object = [
       { 'java': 'spring', 'php': 'laravel' },
-      { 'javascript': 'react', 'python': 'django' }
+      { 'javascript': 'react', 'python': 'django' },
+      {
+        'python': {
+          'ai': '알파고', 'google': 'go'
+        }
+      }
     ]
     console.log(array_object[0].java)
-    console.log(array_object[0]['php'])
+    console.log(array_object[1]['python'])
+    console.log(array_object[2].python.ai)
 
     /* object destructuring key값으로 할당된다. *********************************************/
     const { 자바, 파이썬 } = { '자바': '스프링', '자바스크립트': '리액트', '파이썬': '장고' };
