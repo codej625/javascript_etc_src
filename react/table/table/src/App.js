@@ -4,26 +4,26 @@ import datas from './data.json';
 //=======================================================
 const App = () => {
 
-  const [tableHead, setTableHead] = useState([]);
+  // const [tableHead, setTableHead] = useState([]);
   const [editIdx, setEditIdx] = useState(9999);
   const [chageData, setChangeData] = useState("");
   //=====================================================
   useEffect(() => {
     console.log('한번');
   }, []);
-  
+
   useEffect(() => {
     console.log('여러번');
   });
-  
+
   useEffect(() => {
     console.log(`changeData 변경 : ${chageData}`);
   }, [chageData]);
-  
+
   const getTargetData = (data) => {
     console.log('data', data);
   }
-  
+
   const editData = (idx) => {
     console.log(idx);
     setEditIdx(idx);
