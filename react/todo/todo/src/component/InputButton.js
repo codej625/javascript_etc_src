@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const InputButton = () => {
+const InputButton = (props) => {
   return (
     <Fragment>
 
