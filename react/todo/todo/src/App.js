@@ -1,15 +1,7 @@
 import React from 'react';
+import TodoTemplate from './component/TodoTemplate';
 import './App.css';
-import Content from './component/Content';
-import Title from './component/Title';
 
-const App = () => {
-  return (
-    <React.Fragment>
-      <Title text="Todo List"/>
-      <Content />
-    </React.Fragment>
-  );
-}
+const App = () => <TodoTemplate />
 
 export default App;

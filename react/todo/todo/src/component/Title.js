@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const Title = (props) => {
   return (
-    <React.Fragment>
-      <div>{props.text}</div>
-    </React.Fragment>
+    <Fragment>
+
+    </Fragment>
   );
 }
 

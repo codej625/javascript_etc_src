@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const InputButton = () => {
   return (
-    <React.Fragment>
-      
-    </React.Fragment>
+    <Fragment>
+
+    </Fragment>
   );
 }
 
