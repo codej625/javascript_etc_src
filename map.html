@@ -13,13 +13,36 @@
 
   <script>
     const arrayObject = [
-      { label: 'contentscode', order: 'asc', id: 'contentscode', contentscode: true },
-      { label: 'userdata', order: 'asc', id: 'userdata', userdata: true },
-      { label: 'extradata', order: 'asc', id: 'extradata', extradata: false }
+      {
+        label: 'contentscode',
+        order: 'asc',
+        id: 'contentscode',
+        contentscode: true
+      },
+      {
+        label: 'userdata',
+        order: 'asc',
+        id: 'userdata',
+        userdata: true
+      },
+      {
+        label: 'extradata',
+        order: 'asc',
+        id: 'extradata',
+        extradata: false
+      }
     ];
 
     const mapTest = () => arrayObject.map((data, idx) => {
       console.log(`${idx} + ${data[data.label]}`)
+    });
+
+    const mapTest2 = () => arrayObject.map((data, idx) => {
+      console.log(`${idx} + ${data[data.label]}`)
+
+      return (
+        '<div>' + data + '<div>'
+      )
     });
   </script>
 </body>
