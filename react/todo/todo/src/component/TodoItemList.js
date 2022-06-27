@@ -6,7 +6,8 @@ const ToDoItemList = ({ title, todoList, setTodoList, checkedList }) => (
     {/* props로 부터 title 값을 전달 받음 */}
     <p className="todoapp__list-tit">{title}</p>
     <ul className="todoapp__list-ul">
-      {todoList && // todoList가 있을때만 출력
+      {
+        todoList && // todoList가 있을때만 출력
         todoList.map((todoItem) => {
           // 삭제한 항목인 경우, 출력하지 않음 (deleted가 true)
           if (todoItem.deleted) return null;

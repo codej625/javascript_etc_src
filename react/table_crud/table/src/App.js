@@ -12,10 +12,29 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Checkbox } from '@material-ui/core';
 
 const App = () => {
+  const [select, setSelect] = useState(false);
+  const [addText, setAddText] = useState('ADD');
   const [todos, setTodos] = useState(false);
   const [spacing, setSpacing] = React.useState(2);
+  const [inputs, setInputs] = useState({
+    'userId': '',
+    'id': '',
+    'title': '',
+    'completed': false
+  });
+
+  const { id, title, completed } = inputs;
+
+  const onChange = e => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value
+    });
+  };
 
   useEffect(() => {
     setTodos(datas)
@@ -43,6 +62,18 @@ const App = () => {
     };
   };
 
+  const addButton = () => {
+    setSelect(!select)
+    // (select) ? setAddText('ADD') : setAddText('CANCEL');
+    if (select) {
+      setAddText('ADD')
+    } else {
+      setAddText('CANCEL')
+    }
+    console.log('test')
+  };
+
+
   return (
     <Grid container spacing={spacing}>
       <Grid item xs={12}>
@@ -59,19 +90,31 @@ const App = () => {
                     )
                   })
                 }
-                <TableCell colSpan={2}></TableCell>
+                <TableCell colSpan={2} align="right"><Button size="small" variant="contained" onClick={addButton}>{addText}</Button></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
+              {select && (
+                <TableRow>
+                  <Item
+                    id={id}
+                    title={title}
+                    completed={completed}
+                    onChange={onChange}
+                  />
+                </TableRow>
+              )}
               {
                 todos.map(todo => (
                   <TableRow key={todo.id}>
                     <TableCell>{todo.id}</TableCell>
                     <TableCell>{todo.userId}</TableCell>
                     <TableCell>{todo.title}</TableCell>
-                    <TableCell align={"center"}><input type="checkbox" onChange={() => console.log(123)} /></TableCell>
-                    <TableCell><Button size="small" variant="contained">EDIT</Button></TableCell>
-                    <TableCell><Button size="small" variant="contained" onClick={() => deleteButton(todo.id)}>DELETE</Button></TableCell>
+                    <TableCell align="center" ><Checkbox onChange={() => console.log(123)} /></TableCell>
+                    <TableCell colSpan={2} align="right">
+                      <Button size="small" variant="contained">EDIT</Button>
+                      <Button size="small" variant="contained" color="secondary" onClick={() => deleteButton(todo.id)}>DELETE</Button>
+                    </TableCell>
                   </TableRow>
                 ))
               }
@@ -81,6 +124,18 @@ const App = () => {
       </Grid>
     </Grid>
   );
+}
+
+const Item = () => {
+  return (
+    <Fragment>
+      <TableCell></TableCell>
+      <TableCell><input name="id" /></TableCell>
+      <TableCell><input name="title" /></TableCell>
+      <TableCell align="center"><Checkbox /></TableCell>
+      <TableCell align="right"><Button size="small" variant="contained" color="primary">CREATE</Button></TableCell>
+    </Fragment>
+  )
 }
 
 export default App;

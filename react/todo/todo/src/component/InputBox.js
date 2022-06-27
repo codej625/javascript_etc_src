@@ -23,6 +23,7 @@ const InputBox = ({ todoList, setTodoList }) => {
     setTodoList(nextTodoList);
     // input 값 초기화 및 포커싱
     setText('');
+    // 엘리먼트의 접근 현재의 엘리먼트의 포커스를 맞춤
     inputRef.current.focus();
   };
   //=============================================================
