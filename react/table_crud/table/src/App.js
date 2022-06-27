@@ -69,7 +69,7 @@ const App = () => {
                     <TableCell>{todo.id}</TableCell>
                     <TableCell>{todo.userId}</TableCell>
                     <TableCell>{todo.title}</TableCell>
-                    <TableCell align='center'><input type="checkbox" onChange={() => console.log(123)} /></TableCell>
+                    <TableCell align={"center"}><input type="checkbox" onChange={() => console.log(123)} /></TableCell>
                     <TableCell><Button size="small" variant="contained">EDIT</Button></TableCell>
                     <TableCell><Button size="small" variant="contained" onClick={() => deleteButton(todo.id)}>DELETE</Button></TableCell>
                   </TableRow>
