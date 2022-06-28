@@ -1,6 +1,8 @@
 import './App.css';
 import React, { Fragment, useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container'
 import axios from 'axios';
 import datas from './todos.json';
@@ -16,6 +18,8 @@ import { Checkbox } from '@material-ui/core';
 const App = () => {
   const [select, setSelect] = useState(false);
   const [todos, setTodos] = useState(false);
+  const [toggle, setToggle] = useState(false);
+  const [update, setUpdate] = useState(false);
   const [addText, setAddText] = useState('ADD');
   const [spacing, setSpacing] = React.useState(2);
   const [inputs, setInputs] = useState({
@@ -33,6 +37,7 @@ const App = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
+    console.log(e.target.value)
     setInputs({
       ...inputs, [name]: value
     });
@@ -69,6 +74,15 @@ const App = () => {
     }
   };
 
+  const updateButton = () => {
+    setUpdate(!update)
+    console.log('update-> ', update)
+  };
+
+  const clickCheck = () => {
+    setToggle(!toggle)
+  }
+
   return (
     <Grid container spacing={spacing}>
       <Grid item xs={12}>
@@ -94,26 +108,75 @@ const App = () => {
                   <TableRow>
                     <Item
                       id={id}
-                      userId={userId}
                       title={title}
+                      todos={todos}
+                      toggle={toggle}
                       completed={completed}
                       onChange={onChange}
+                      clickCheck={clickCheck}
                       onSubmit={handleSubmit}
                     />
                   </TableRow>
                 )}
                 {
                   todos.map(todo => (
-                    <TableRow key={todo.id}>
-                      <TableCell>{todo.id}</TableCell>
-                      <TableCell>{todo.userId}</TableCell>
-                      <TableCell>{todo.title}</TableCell>
-                      <TableCell align="center" ><Checkbox /></TableCell>
-                      <TableCell colSpan={2} align="right">
-                        <Button size="small" variant="contained">EDIT</Button>
-                        <Button size="small" variant="contained" color="secondary" onClick={() => deleteButton(todo.id)}>DELETE</Button>
-                      </TableCell>
-                    </TableRow>
+                    (!update) ? (
+                      <TableRow key={todo.id}>
+                        <TableCell>{todo.id}</TableCell>
+                        <TableCell>{todo.userId}</TableCell>
+                        <TableCell>{todo.title}</TableCell>
+                        <TableCell align="center"><Checkbox checked={(todo.completed) ? true : false} /></TableCell>
+                        <TableCell colSpan={2} align="right">
+                          <Button size="small" variant="contained" onClick={updateButton}>EDIT</Button>
+                          <Button size="small" variant="contained" color="secondary" onClick={() => deleteButton(todo.id)}>DELETE</Button>
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      <TableRow key={todo.id}>
+                        <TableCell>
+                          <TextField
+                            size="small" 
+                            label="id" 
+                            variant="outlined"
+                            defaultValue={todo.id}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <TextField 
+                            size="small" 
+                            label="userId" 
+                            variant="outlined" 
+                            defaultValue={todo.userId} 
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <TextField
+                            size="small" 
+                            label="title" 
+                            variant="outlined" 
+                            defaultValue={todo.title} 
+                          />
+                        </TableCell>
+                        <TableCell align="center">
+                          <Checkbox 
+                            checked={(todo.completed) ? true : false} 
+                          />
+                        </TableCell>
+                        <TableCell colSpan={2} align="right">
+                          <Button 
+                            size="small" 
+                            variant="contained" 
+                            onClick={updateButton}
+                          >EDIT</Button>
+                          <Button 
+                            size="small" 
+                            variant="contained" 
+                            color="secondary" 
+                            onClick={() => deleteButton(todo.id)}
+                          >DELETE</Button>
+                        </TableCell>
+                      </TableRow>
+                    )
                   ))
                 }
               </TableBody>
@@ -125,13 +188,13 @@ const App = () => {
   );
 }
 
-const Item = ({ userId, id, title, completed, onChange }) => {
+const Item = ({ userId, id, title, onChange, clickCheck, toggle }) => {
   return (
     <Fragment>
-      <TableCell><input type="text" name="userId" value={userId} onChange={onChange} /></TableCell>
+      <TableCell><input type="text" name="userId" value={userId} onChange={onChange} className="readOnly" /></TableCell>
       <TableCell><input type="text" name="id" value={id} onChange={onChange} /></TableCell>
       <TableCell><input type="text" name="title" value={title} onChange={onChange} /></TableCell>
-      <TableCell align="center"><Checkbox name="completed" value={completed} onChange={onChange} /></TableCell>
+      <TableCell align="center"><Checkbox name="completed" value={toggle} onChange={onChange} onClick={clickCheck} /></TableCell>
       <TableCell align="right"><Button size="small" variant="contained" color="primary" type="submit">CREATE</Button></TableCell>
     </Fragment>
   )
