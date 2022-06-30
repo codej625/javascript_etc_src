@@ -5,15 +5,30 @@ import React, { Fragment, useEffect, useState } from 'react';
 function App() {
   //======================================================================
   const [todos, setTotos] = useState(false);
-  const [update, setUpdate] = useState(false);
+  const [updateState, setUpdateState] = useState(false);
+  const [update, setUpdate] = useState({
+    'userId': '',
+    'id': '',
+    'title': '',
+    'completed': ''
+  });
+  const [updateTest, setUpdateTest] = useState({
+    'userId': '',
+    'id': 1,
+    'title': '업데이트',
+    'completed': true
+  });
   //======================================================================
   useEffect(() => {
     setTotos(datas);
   }, []);
   //======================================================================
-  const isUpdate = () => {
-    setUpdate(!update);
-    console.log("update")
+  const isUpdate = (id) => {
+    setUpdateState(!updateState);
+    const test = todos.map(up =>
+      (up.id === updateTest.id) ? { ...up, ...updateTest } : up
+    );
+    setTotos(test)
   };
   //======================================================================
   const isDelete = (id) => {
@@ -36,6 +51,17 @@ function App() {
             }
             <th colSpan={2}></th>
           </tr>
+          {
+            updateState && (
+              <tr>
+                <td><input type={"text"} readOnly /></td>
+                <td><input type={"text"} /></td>
+                <td><input type={"text"} /></td>
+                <td><input type={"checkbox"} /></td>
+                <td colSpan={2}></td>
+              </tr>
+            )
+          }
         </thead>
         <tbody>
           {
@@ -46,7 +72,7 @@ function App() {
                   <td>{data.userId}</td>
                   <td>{data.title}</td>
                   <td><input type={"checkbox"} defaultChecked={(data.completed) ? true : false} /></td>
-                  <td><input type={"button"} value={"UPDATE"} onClick={isUpdate} /></td>
+                  <td><input type={"button"} value={"UPDATE"} onClick={() => isUpdate(data.id)} /></td>
                   <td><input type={"button"} value={"DELETE"} onClick={() => isDelete(data.id)} /></td>
                 </tr>
               ))
