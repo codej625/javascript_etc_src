@@ -1,16 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
-const Input = () => {
+const Input = ({ type, value, onClick, defaultChecked, onChange }) => {
 
   return (
-    <div>
-
-      <table>
-        <tr></tr>
-      </table>
-
-    </div>
+    <Fragment>
+      <input 
+        className="btn btn-outline-secondary"
+        type={type}
+        value={value}
+        onClick={onClick}
+        defaultChecked={defaultChecked}
+        onChange={onChange}
+      />
+    </Fragment>
   )
-
 }
 export default Input;
