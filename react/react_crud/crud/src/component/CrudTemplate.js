@@ -14,13 +14,12 @@ const CrudTemplate = () => {
 
   useEffect(() => {
     setTodos(jsonFile);
-    console.log(jsonFile)
   }, [jsonFile])
 
   const insertUser = () => {
     setForm(!form);
-    setFormName((prev) => prev = '< INSERT FORM >');
-    (!form) ? setCol((prev) => prev = 'col-8') : setCol((prev) => prev = 'col-12');
+    setFormName(prev => prev = '< INSERT FORM >');
+    (!form) ? setCol(prev => prev = 'col-8') : setCol(prev => prev = 'col-12');
   }
 
   const updateUser = (id) => {
@@ -30,13 +29,18 @@ const CrudTemplate = () => {
     );
     setTotos([...todos.slice(0, id), updateTest, ...todos.slice(id + 1)]);
     */
-    console.log([...todos.slice(0, id - 1)])
-    console.log(updateTest)
-    console.log([...todos.slice(0, id - 1), updateTest])
-    console.log([...todos.slice(id)])
-    console.log([...todos.slice(0, id - 1), updateTest, ...todos.slice(id)])
-    setTodos([...todos.slice(0, id - 1), updateTest, ...todos.slice(id)]);
+    // console.log([...todos.slice(0, id - 1)])
+    // console.log(updateTest)
+    // console.log([...todos.slice(0, id - 1), updateTest])
+    // console.log([...todos.slice(id)])
+    // console.log([...todos.slice(0, id - 1), updateTest, ...todos.slice(id)])
+    // setTodos([...todos.slice(0, id - 1), updateTest, ...todos.slice(id)]);
   };
+
+  const deleteUser = (userId) => {
+    const confirmId = window.confirm('삭제하시겠습니까?');
+    confirmId && setTodos(todos.filter(user => user.id !== userId));
+  }
 
   return (
     <div id="wrap">
@@ -47,12 +51,12 @@ const CrudTemplate = () => {
               <thead>
                 <tr className='table-light' style={{ textAlign: "center" }}>
                   {/* {
-                (todos) && (
-                  Object.keys(todos[0]).map(headList => (
-                    <th key={headList}>{headList}</th>
-                  ))
-                )
-              } */}
+                    (todos) && (
+                      Object.keys(todos[0]).map(headList => (
+                        <th key={headList}>{headList}</th>
+                      ))
+                    )
+                  } */}
                   <th>ID</th>
                   <th>USER ID</th>
                   <th>TITLE</th>
@@ -87,6 +91,7 @@ const CrudTemplate = () => {
                         <Input
                           type={"button"}
                           value={"DELETE"}
+                          onClick={() => deleteUser(bodyList.id)}
                         />
                       </td>
                     </tr>
@@ -101,6 +106,8 @@ const CrudTemplate = () => {
                 todos={todos}
                 setTodos={setTodos}
                 formName={formName}
+                setForm={setForm}
+                setCol={setCol}
               />
             )
           }
