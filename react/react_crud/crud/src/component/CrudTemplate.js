@@ -23,6 +23,21 @@ const CrudTemplate = () => {
     (!form) ? setCol((prev) => prev = 'col-8') : setCol((prev) => prev = 'col-12');
   }
 
+  const updateUser = (id) => {
+    /*
+    const test = todos.map(up =>
+      (up.id === updateTest.id) ? { ...up, ...updateTest } : up
+    );
+    setTotos([...todos.slice(0, id), updateTest, ...todos.slice(id + 1)]);
+    */
+    console.log([...todos.slice(0, id - 1)])
+    console.log(updateTest)
+    console.log([...todos.slice(0, id - 1), updateTest])
+    console.log([...todos.slice(id)])
+    console.log([...todos.slice(0, id - 1), updateTest, ...todos.slice(id)])
+    setTodos([...todos.slice(0, id - 1), updateTest, ...todos.slice(id)]);
+  };
+
   return (
     <div id="wrap">
       <div className="container">
