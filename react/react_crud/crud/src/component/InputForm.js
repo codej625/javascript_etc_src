@@ -4,19 +4,21 @@ import Input from './../component/Input';
 
 const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
 
+  const [checkbox, setCheckbox] = useState(false);
+
   const [input, setInput] = useState({
     'id': '',
     'userId': '',
     'title': '',
-    'completed': ''
+    'completed': false
   });
-  const { id, userId, title, completed } = input;
+  const { userId, title, completed } = input;
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
     setInput({
       ...input, [name]: value
-    })
+    });
   }
 
   const createForm = (e) => {
@@ -25,11 +27,11 @@ const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
       ...todos, input
     ]);
     setInput({
-      ...input, 
+      ...input,
       'id': '',
       'userId': '',
       'title': '',
-      'completed': ''
+      'completed': false
     });
     setCol('col-12');
     setForm(false);
@@ -52,9 +54,10 @@ const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
                   <td colSpan={2}>
                     <Input
                       name={"id"}
-                      type="number"
-                      value={id}
+                      type="text"
+                      value={todos.length + 1}
                       readOnly
+                      onChange={onChangeInput}
                     />
                   </td>
                 </tr>
@@ -84,8 +87,10 @@ const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
                   <td>COMPLETED</td>
                   <td>
                     <Input
-                      value={completed}
+                      value={checkbox}
                       type="checkbox"
+                      defaultChecked={false}
+                      onClick={() => setCheckbox(prev => !prev)}
                     />
                   </td>
                 </tr>
@@ -93,7 +98,9 @@ const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
                   <td colSpan={3} style={{ textAlign: "right" }}>
                     <Input
                       type="SUBMIT"
-                    >SUBMIT</Input>
+                      value="SUBMIT"
+                      readOnly
+                    ></Input>
                   </td>
                 </tr>
               </tbody>
