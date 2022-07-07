@@ -135,43 +135,43 @@ const App = () => {
                       <TableRow key={todo.id}>
                         <TableCell>
                           <TextField
-                            size="small" 
-                            label="id" 
+                            size="small"
+                            label="id"
                             variant="outlined"
                             defaultValue={todo.id}
                           />
                         </TableCell>
                         <TableCell>
-                          <TextField 
-                            size="small" 
-                            label="userId" 
-                            variant="outlined" 
-                            defaultValue={todo.userId} 
+                          <TextField
+                            size="small"
+                            label="userId"
+                            variant="outlined"
+                            defaultValue={todo.userId}
                           />
                         </TableCell>
                         <TableCell>
                           <TextField
-                            size="small" 
-                            label="title" 
-                            variant="outlined" 
-                            defaultValue={todo.title} 
+                            size="small"
+                            label="title"
+                            variant="outlined"
+                            defaultValue={todo.title}
                           />
                         </TableCell>
                         <TableCell align="center">
-                          <Checkbox 
-                            checked={(todo.completed) ? true : false} 
+                          <Checkbox
+                            checked={(todo.completed) ? true : false}
                           />
                         </TableCell>
                         <TableCell colSpan={2} align="right">
-                          <Button 
-                            size="small" 
-                            variant="contained" 
+                          <Button
+                            size="small"
+                            variant="contained"
                             onClick={updateButton}
                           >EDIT</Button>
-                          <Button 
-                            size="small" 
-                            variant="contained" 
-                            color="secondary" 
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="secondary"
                             onClick={() => deleteButton(todo.id)}
                           >DELETE</Button>
                         </TableCell>
