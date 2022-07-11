@@ -72,9 +72,9 @@ const CrudTemplate = () => {
               </thead>
               <tbody>
                 {
-                  (todos) && todos.map(bodyList => (
+                  (todos) && todos.map((bodyList, idx) => (
                     <tr key={bodyList.id} style={{ textAlign: "center" }}>
-                      <td>{bodyList.id}</td>
+                      <td>{idx + 1}</td>
                       <td>{bodyList.userId}</td>
                       <td style={{ textAlign: "left" }}>{bodyList.title}</td>
                       <td>

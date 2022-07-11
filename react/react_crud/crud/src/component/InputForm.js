@@ -4,35 +4,25 @@ import Input from './../component/Input';
 
 const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
 
-  const [checkbox, setCheckbox] = useState(false);
-
   const [input, setInput] = useState({
     'id': '',
     'userId': '',
     'title': '',
-    'completed': false
+    'completed': ''
   });
-  const { userId, title, completed } = input;
+  const { userId, title } = input;
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
-    setInput({
-      ...input, [name]: value
-    });
+    setInput(
+      (e.target.checked) ? { ...input, [name]: value, 'id': todos.length + 1, 'completed': true } : { ...input, [name]: value, 'id': todos.length + 1, 'completed': false }
+    );
   }
-
   const createForm = (e) => {
     e.preventDefault();
     setTodos([
       ...todos, input
     ]);
-    setInput({
-      ...input,
-      'id': '',
-      'userId': '',
-      'title': '',
-      'completed': false
-    });
     setCol('col-12');
     setForm(false);
   }
@@ -87,17 +77,16 @@ const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
                   <td>COMPLETED</td>
                   <td>
                     <Input
-                      value={checkbox}
                       type="checkbox"
                       defaultChecked={false}
-                      onClick={() => setCheckbox(prev => !prev)}
+                      onChange={onChangeInput}
                     />
                   </td>
                 </tr>
                 <tr className="table-light">
                   <td colSpan={3} style={{ textAlign: "right" }}>
                     <Input
-                      type="SUBMIT"
+                      type="submit"
                       value="SUBMIT"
                       readOnly
                     ></Input>
