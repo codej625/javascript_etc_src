@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import './../App.css';
 import Input from './../component/Input';
 
-const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
+const InputForm = ({ todos, setTodos, formName, setFormState, setCol, formState, key, updateState, setUpdateState, setUpdateId, updateId }) => {
 
   const [input, setInput] = useState({
     'id': '',
@@ -20,11 +20,17 @@ const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
   }
   const createForm = (e) => {
     e.preventDefault();
-    setTodos([
-      ...todos, input
-    ]);
+    if(updateState) {
+      setTodos([...todos.slice(0, key - 1), input, ...todos.slice(key)])
+      console.log("작동")
+    } else{
+      setTodos([
+        ...todos, input
+      ]);
+      setUpdateState(false);
+    }
     setCol('col-12');
-    setForm(false);
+    setFormState(false);
   }
 
   return (
@@ -45,7 +51,7 @@ const InputForm = ({ todos, setTodos, formName, setForm, setCol }) => {
                     <Input
                       name={"id"}
                       type="text"
-                      value={todos.length + 1}
+                      value={(updateState) ? updateId : todos.length + 1}
                       readOnly
                       onChange={onChangeInput}
                     />

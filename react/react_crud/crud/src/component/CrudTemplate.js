@@ -8,21 +8,29 @@ import InputForm from './InputForm';
 const CrudTemplate = () => {
 
   const [todos, setTodos] = useState(false);
-  const [form, setForm] = useState(false);
+  const [formState, setFormState] = useState(false);
   const [formName, setFormName] = useState('');
   const [col, setCol] = useState('');
+  const [updateState, setUpdateState] = useState(false);
+  const [updateId, setUpdateId] = useState('');
 
   useEffect(() => {
     setTodos(jsonFile);
   }, [jsonFile])
 
   const insertUser = () => {
-    setForm(!form);
+    setUpdateState(false)
+    setFormState(!formState);
     setFormName(prev => prev = '< INSERT FORM >');
-    (!form) ? setCol(prev => prev = 'col-8') : setCol(prev => prev = 'col-12');
+    (!formState) ? setCol('col-8') : setCol('col-12');
   }
 
-  const updateUser = (id) => {
+  const updateUser = (key) => {
+    setFormState(!formState);
+    setFormName(prev => prev = '< UPDATE FORM >');
+    (!formState) ? setCol('col-8') : setCol('col-12');
+    setUpdateState(true);
+    setUpdateId(key)
     /*
     const test = todos.map(up =>
       (up.id === updateTest.id) ? { ...up, ...updateTest } : up
@@ -34,7 +42,8 @@ const CrudTemplate = () => {
     // console.log([...todos.slice(0, id - 1), updateTest])
     // console.log([...todos.slice(id)])
     // console.log([...todos.slice(0, id - 1), updateTest, ...todos.slice(id)])
-    // setTodos([...todos.slice(0, id - 1), updateTest, ...todos.slice(id)]);
+    // setTodos([...todos.slice(0, key - 1), updateTest, ...todos.slice(key)]);
+    
   };
 
   const deleteUser = (userId) => {
@@ -87,6 +96,7 @@ const CrudTemplate = () => {
                         <Input
                           type={"button"}
                           value={"UPDATE"}
+                          onClick={() => updateUser(bodyList.id)}
                         />
                         <Input
                           type={"button"}
@@ -101,13 +111,19 @@ const CrudTemplate = () => {
             </table>
           </div>
           {
-            (form) && (
+            (formState) && (
               <InputForm
+              
                 todos={todos}
                 setTodos={setTodos}
                 formName={formName}
-                setForm={setForm}
+                setFormState={setFormState}
                 setCol={setCol}
+                formState={formState}
+                updateState={updateState}
+                setUpdateState={setUpdateState}
+                setUpdateId={setUpdateId}
+                updateId={updateId}
               />
             )
           }
