@@ -94,7 +94,7 @@ const InputForm = ({ todos, setTodos, formName, setFormState, setCol, formState,
                     <Input
                       type="submit"
                       value="SUBMIT"
-                      readOnly
+                      readOnly 
                     ></Input>
                   </td>
                 </tr>
