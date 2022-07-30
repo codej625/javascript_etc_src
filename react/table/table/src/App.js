@@ -4,110 +4,30 @@ import datas from './data.json';
 //=======================================================
 const App = () => {
 
-  // const [tableHead, setTableHead] = useState([]);
-  const [editIdx, setEditIdx] = useState(9999);
-  const [chageData, setChangeData] = useState("");
-  //=====================================================
-  useEffect(() => {
-    console.log('한번');
-  }, []);
-
-  useEffect(() => {
-    console.log('여러번');
-  });
-
-  useEffect(() => {
-    console.log(`changeData 변경 : ${chageData}`);
-  }, [chageData]);
-
-  const getTargetData = (data) => {
-    console.log('data', data);
-  }
-
-  const editData = (idx) => {
-    console.log(idx);
-    setEditIdx(idx);
-  }
   //=====================================================
   return (
-    <table>
-      <thead>
-        <tr>
-          {Object.keys(datas[0]).map((key, idx) => (
-            <td key={idx}>{key}</td>
-          ))}
-          <td>수정하기</td>
-        </tr>
-      </thead>
-      <tbody>
-        {/*datas.map(data => (
-          <tr>
-            <td>{data.일자}</td>
-            <td>{data.캠페인}</td>
-            <td>{data.광고매체}</td>
-            <td>{data.광고목표}</td>
-            <td>{data.타겟팅}</td>
-            <td>{data.광고소재}</td>
-            <td>{data.노출수}</td>
-            <td>{data.클릭수}</td>
-            <td>{data.CTR}</td>
-            <td>{data.CPC}</td>
-            <td>{data.CPM}</td>
-            <td>{data.총비용}</td>
-            <td>{data.DB}</td>
-            <td>{data.전환율}</td>
-            <td>{data.CPA}</td>
-            <td>{data.Score}</td>
-            <td>{data.Status}</td>
-            <td>{data.소재보기}</td>
-          </tr>
-        ))*/}
-        {datas.map((data, idx) => {
-          let background = "";
-          switch (data.Score) {
-            case 50:
-              background = 'red';
-              break;
-            case 0:
-              background = 'white';
-              break;
-            default:
-              background = 'blue';
-          }
-          return (
-            <tr>
-              <td>
-                {(idx === editIdx) ? (
-                  <input type="text" value={chageData} onChange={(e) => setChangeData(e.target.value)} />
-                ) : (
-                  <span>
-                    {data.일자}
-                  </span>
-                )}
-              </td>
-              <td>{data.캠페인}</td>
-              <td>{data.광고매체}</td>
-              <td>{data.광고목표}</td>
-              <td>{data.타겟팅}</td>
-              <td>{data.광고소재}</td>
-              <td>{data.노출수}</td>
-              <td>{data.클릭수}</td>
-              <td>{data.CTR}</td>
-              <td>{data.CPC}</td>
-              <td>{data.CPM}</td>
-              <td>{data.총비용}</td>
-              <td>{data.DB}</td>
-              <td>{data.전환율}</td>
-              <td>{data.CPA}</td>
-              <td>{data.Score}</td>
-              <td style={{ background, minWidth: 30 }}>{data.Status}</td>
-              <td><button onClick={() => getTargetData(data.광고소재)}>자세히보기</button></td>
-              <td><button onClick={() => editData(idx)}>수정하기</button></td>
-            </tr>
-          )
-        })}
-      </tbody>
-    </table>
+    <div className="container">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Home</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
+        <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
+      </div>
+    </div>
   )
 }
 //=======================================================
