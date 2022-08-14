@@ -1,0 +1,5 @@
+.card-text { display: flex; flex-direction: column; }
+.card-text > div { display: flex; justify-content: space-evenly; }
+.card-text > input { margin-bottom: 10px; }
+.card-text > select { height: 30px; }
+.crud-div > .card { top: 50px; position: sticky; }

@@ -1,148 +1,260 @@
 import './../App.css';
 import React, { useEffect, useState } from 'react';
-import json from './../data.json';
+import json from './../datas.json';
 //=======================================================
 const Main = () => {
   const [datas, setDatas] = useState(json);
   const [homeDiv, setHomeDiv] = useState(true);
   const [profileDiv, setProfileDiv] = useState(false);
-  const [contactDiv, setContactDivDiv] = useState(false);
-  //=====================================================
-  useEffect(() => {
+  const [contactDiv, setContactDiv] = useState(false);
+  const [updateDiv, setUpdateDiv] = useState(false);
+  const [inputs, setInputs] = useState({
+    'userId': '',
+    'id': '',
+    'title': '',
+    'completed': ''
   });
   //=====================================================
+  const { userId, id, title, completed } = inputs;
+  //=====================================================
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    console.log('name', name)
+    console.log('value', value)
+    setInputs({
+      ...inputs, [name]: value
+    });
+  }
+  //=====================================================
+  useEffect(() => {
+    console.log(inputs);
+  }, [inputs]);
+  //=====================================================
   const divChange = (e) => {
-    const divName = e.target.name;
-    switch (divName) {
-      case 'home'   : setHomeDiv(prev => prev = true);
-                      setProfileDiv(prev => prev = false);
-                      setContactDivDiv(prev => prev = false);
-                      break;
-      case 'profile': setHomeDiv(prev => prev = false);
-                      setProfileDiv(prev => prev = true);
-                      setContactDivDiv(prev => prev = false);
-                      break;
-      default       : setHomeDiv(prev => prev = false);
-                      setProfileDiv(prev => prev = false);
-                      setContactDivDiv(prev => prev = true);
-                      break;
+    const menuName = e.target.name;
+    switch (menuName) {
+      case 'home':
+        setHomeDiv(prev => prev = true);
+        setProfileDiv(prev => prev = false);
+        setContactDiv(prev => prev = false);
+        setUpdateDiv(prev => prev = false);
+        break;
+      case 'profile':
+        setHomeDiv(prev => prev = false);
+        setProfileDiv(prev => prev = true);
+        setContactDiv(prev => prev = false);
+        setUpdateDiv(prev => prev = false);
+        break;
+      default:
+        setHomeDiv(prev => prev = false);
+        setProfileDiv(prev => prev = false);
+        setContactDiv(prev => prev = true);
+        setUpdateDiv(prev => prev = false);
+        break;
     }
   }
-}
-//=====================================================
-return (
-  <React.Fragment>
-    <div className="container-fluid">
-      <ul className="nav nav-tabs" id="myTab" role="tablist">
-        <li className="nav-item" role="presentation">
-          <button
-            id="home-tab"
-            className="nav-link active"
-            name="home"
-            data-bs-toggle="tab"
-            data-bs-target="#home-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="home-tab-pane"
-            aria-selected="true"
-            onClick={divChange}
-          >Home</button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            id="profile-tab"
-            className="nav-link"
-            name="profile"
-            data-bs-toggle="tab"
-            data-bs-target="#profile-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="profile-tab-pane"
-            aria-selected="false"
-            onClick={divChange}
-          >Profile</button>
-        </li>
-        <li className="nav-item" role="presentation">
-          <button
-            id="contact-tab"
-            className="nav-link"
-            name='contact'
-            data-bs-toggle="tab"
-            data-bs-target="#contact-tab-pane"
-            type="button"
-            role="tab"
-            aria-controls="contact-tab-pane"
-            aria-selected="false"
-            onClick={divChange}
-          >Contact</button>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            {
-              homeDiv && (
-                Object.keys(datas[0]).map((keys) => (
-                  <th key={keys}>{keys}</th>
-                ))
-              )
-            }
-          </tr>
-        </thead>
-        <tbody>
+  //=====================================================
+  const deleteUser = (userId) => {
+    const confirmId = window.confirm('삭제하시겠습니까?');
+    confirmId && setDatas(datas.filter(user => user.id !== userId));
+  }
+  //=====================================================
+  const updateUser = (obj) => {
+    setInputs({
+      ...inputs,
+      'userId': obj.userId,
+      'id': obj.id,
+      'title': obj.title,
+      'completed': obj.completed
+    });
+    setUpdateDiv(prev => !prev);
+  }
+  //=====================================================
+  const cancleCol = () => {
+    setUpdateDiv(prev => !prev);
+  }
+  //=====================================================
+  const update = () => {
+    const dddsd= datas.map(update2 => {
+      return (update2.id === id) ? { ...update2, ...inputs } : update2
+      }
+      
+    );
+    setDatas([
+      ...dddsd
+    ])
+  }
+  //=====================================================
+  return (
+    <React.Fragment>
+      <div className="container-fluid">
+        <ul className="nav nav-tabs" id="myTab" role="tablist">
+          <li className="nav-item" role="presentation">
+            <button
+              id="home-tab"
+              className="nav-link active"
+              name="home"
+              data-bs-toggle="tab"
+              data-bs-target="#home-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="home-tab-pane"
+              aria-selected="true"
+              onClick={divChange}
+            >Home</button>
+          </li>
+          <li className="nav-item" role="presentation">
+            <button
+              id="profile-tab"
+              className="nav-link"
+              name="profile"
+              data-bs-toggle="tab"
+              data-bs-target="#profile-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="profile-tab-pane"
+              aria-selected="false"
+              onClick={divChange}
+            >Profile</button>
+          </li>
+          <li className="nav-item" role="presentation">
+            <button
+              id="contact-tab"
+              className="nav-link"
+              name="contact"
+              data-bs-toggle="tab"
+              data-bs-target="#contact-tab-pane"
+              type="button"
+              role="tab"
+              aria-controls="contact-tab-pane"
+              aria-selected="false"
+              onClick={divChange}
+            >Contact</button>
+          </li>
+        </ul>
+      </div>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col">
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  {
+                    (homeDiv) && (
+                      Object.keys(datas[0]).map((keys) => (
+                        <th key={keys}>{keys}</th>
+                      ))
+                    )
+                  }
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  (homeDiv) && (
+                    datas.map((datas) => {
+                      let background = '';
+                      switch (datas.completed) {
+                        case true:
+                          background = '#5bbbfb';
+                          break;
+                        case false:
+                          background = '#ff8d8d';
+                          break;
+                        default:
+                          background = '#ffffff';
+                      }
+                      return (
+                        <tr key={datas.id}>
+                          <td>{datas.userId}</td>
+                          <td>{datas.id}</td>
+                          <td>{datas.title}</td>
+                          <td style={{ background }}>
+                            {
+                              (datas.completed === false) ? 'false' : 'true'
+                            }
+                          </td>
+                          <td>
+                            <button
+                              className="btn btn-outline-dark m-1"
+                              onClick={() => updateUser(datas)}
+                            >UPDATE</button>
+                            <button
+                              className="btn btn-outline-dark"
+                              onClick={() => deleteUser(datas.id)}
+                            >DELETE</button>
+                          </td>
+                        </tr>
+                      )
+                    })
+                  )}
+              </tbody>
+            </table>
+          </div>
           {
-            homeDiv && (
-              datas.map((key, idx) => {
-                let background = "";
-                switch (key.Status) {
-                  case null:
-                    background = 'red';
-                    break;
-                  case true:
-                    background = 'white';
-                    break;
-                  default:
-                    background = 'blue';
-                }
-                return (
-                  <tr key={idx}>
-                    <td>{key.일자}</td>
-                    <td>{key.캠페인}</td>
-                    <td>{key.광고매체}</td>
-                    <td>{key.광고목표}</td>
-                    <td>{key.타겟팅}</td>
-                    <td>{key.광고소재}</td>
-                    <td>{key.노출수}</td>
-                    <td>{key.클릭수}</td>
-                    <td>{key.CTR}</td>
-                    <td>{key.CPC}</td>
-                    <td>{key.CPM}</td>
-                    <td>{key.총비용}</td>
-                    <td>{key.DB}</td>
-                    <td>{key.전환율}</td>
-                    <td>{key.CPA}</td>
-                    <td>{key.Score}</td>
-                    <td style={{ background, minWidth: 30 }}>
-                      {
-                        (key.Status == null) ? "null" : "true"
-                      }
-                    </td>
-                    <td style={{ background, minWidth: 30 }}>
-                      {
-                        (key.소재보기 == null) ? "null" : "true"
-                      }
-                    </td>
-                  </tr>
-                )
-              })
-            )}
-        </tbody>
-      </table>
-    </div>
-  </React.Fragment>
-)
+            (updateDiv) && (
+              <div className="crud-div col-4 m-2">
+                <div className="card">
+                  <div className="card-body">
+                    <h3 className="card-title">UPDATE</h3>
+                    <div className="card-text">
+                      <input
+                        name="id"
+                        type="number"
+                        value={id}
+                        readOnly
+                      />
+                      <input
+                        name="userId"
+                        type="number"
+                        placeholder="userId"
+                        value={userId}
+                        onChange={onChange}
+                      />
+                      <input
+                        name="title"
+                        type="text"
+                        placeholder="title"
+                        value={title}
+                        onChange={onChange}
+                      />
+                      <select
+                        name="completed"
+                        onChange={onChange}
+                      >
+                        {
+                          completed ? (
+                            <>
+                              <option value={completed}>TRUE</option>
+                              <option value={!completed}>FALSE</option>
+                            </>
+                          ) : (
+                            <>
+                              <option value={completed}>FALSE</option>
+                              <option value={!completed}>TRUE</option>
+                            </>
+                          )
+                        }
+                      </select>
+                      <div className="mt-3">
+                        <button 
+                          className="btn btn-outline-dark"
+                          onClick={update}
+                          >확인</button>
+                        <button
+                          className="btn btn-outline-dark"
+                          onClick={cancleCol}
+                        >취소</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </React.Fragment>
+  )
 }
 //=======================================================
 export default Main;
