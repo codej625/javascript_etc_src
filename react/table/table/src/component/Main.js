@@ -75,14 +75,11 @@ const Main = () => {
   }
   //=====================================================
   const update = () => {
-    const dddsd= datas.map(update2 => {
-      return (update2.id === id) ? { ...update2, ...inputs } : update2
-      }
-      
+    const updateDatas = datas.map(data =>
+      (data.id === id) ? { ...data, ...inputs } : data
     );
-    setDatas([
-      ...dddsd
-    ])
+    setDatas([...updateDatas]);
+    setUpdateDiv(prev => !prev);
   }
   //=====================================================
   return (
@@ -236,10 +233,10 @@ const Main = () => {
                         }
                       </select>
                       <div className="mt-3">
-                        <button 
+                        <button
                           className="btn btn-outline-dark"
                           onClick={update}
-                          >확인</button>
+                        >확인</button>
                         <button
                           className="btn btn-outline-dark"
                           onClick={cancleCol}
