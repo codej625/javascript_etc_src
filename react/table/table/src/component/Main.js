@@ -143,6 +143,12 @@ const Main = () => {
                       ))
                     )
                   }
+                  <td>
+                    <button
+                      className="btn btn-outline-dark m-1"
+                      // onClick={}
+                    >INSERT</button>
+                  </td>
                 </tr>
               </thead>
               <tbody>
