@@ -8,6 +8,7 @@ const Main = () => {
   const [profileDiv, setProfileDiv] = useState(false);
   const [contactDiv, setContactDiv] = useState(false);
   const [updateDiv, setUpdateDiv] = useState(false);
+  const [nameChange, setNameChange] = useState('');
   const [inputs, setInputs] = useState({
     'userId': '',
     'id': '',
@@ -68,7 +69,19 @@ const Main = () => {
       'completed': obj.completed
     });
     setUpdateDiv(prev => !prev);
+    setNameChange('UPDATE');
   }
+  //=====================================================
+  const insertUser = (obj) => {
+    setInputs({
+    
+      
+    });
+    
+    setUpdateDiv(prev => !prev);
+    setNameChange('INSERT');
+  }
+
   //=====================================================
   const cancleCol = () => {
     setUpdateDiv(prev => !prev);
@@ -146,7 +159,7 @@ const Main = () => {
                   <td>
                     <button
                       className="btn btn-outline-dark m-1"
-                      // onClick={}
+                      onClick={() => insertUser(datas)}
                     >INSERT</button>
                   </td>
                 </tr>
@@ -198,7 +211,7 @@ const Main = () => {
               <div className="crud-div col-4 m-2">
                 <div className="card">
                   <div className="card-body">
-                    <h3 className="card-title">UPDATE</h3>
+                    <h3 className="card-title">{nameChange}</h3>
                     <div className="card-text">
                       <input
                         name="id"
