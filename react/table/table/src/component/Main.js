@@ -75,10 +75,10 @@ const Main = () => {
   const insertUser = () => {
       setInputs({
       ...inputs,
-      'userId': userId,
+      'userId': '',
       'id': datas.length +1,
-      'title': title,
-      'completed': completed
+      'title': '',
+      'completed': ''
     });
     
     
