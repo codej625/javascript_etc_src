@@ -72,11 +72,15 @@ const Main = () => {
     setNameChange('UPDATE');
   }
   //=====================================================
-  const insertUser = (obj) => {
-    setInputs({
-    
-      
+  const insertUser = () => {
+      setInputs({
+      ...inputs,
+      'userId': userId,
+      'id': datas.length +1,
+      'title': title,
+      'completed': completed
     });
+    
     
     setUpdateDiv(prev => !prev);
     setNameChange('INSERT');
@@ -159,7 +163,7 @@ const Main = () => {
                   <td>
                     <button
                       className="btn btn-outline-dark m-1"
-                      onClick={() => insertUser(datas)}
+                      onClick={() => insertUser()}
                     >INSERT</button>
                   </td>
                 </tr>
