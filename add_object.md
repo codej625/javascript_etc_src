@@ -10,6 +10,13 @@ function addObj() {
 	for (let i = 0; i < obj.length; i++) {
 		obj[obj[i].name] = obj[i].value;
 	}
+
+	/** 
+	 * forEach 함수를 사용하여 동일하게 구현할 수 있다.
+	 * Array(obj).forEach(element => {
+	* 	obj[element.name] = element.value;
+   * });
+	 */
 }
 ```
 
