@@ -28,6 +28,8 @@ const num3 = () => {
 
   return console.log('2. addNum => ', addNum + 1);
 }
+
+// 내부에서 순서대로 실행
 const num1 = () => {
   return 9;
 }
