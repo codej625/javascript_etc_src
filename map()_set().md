@@ -51,7 +51,7 @@ Object 의 key 는 string 과 symbol(ES6) 만 가능하지만, map은 어떤 값
 Object에서는 크기를 추적해서 알 수 있지만, map은 손쉽게 얻을 수 있음(size)
 ```
 
-<br />
+<br /><br />
 
 2. Set
 ```
