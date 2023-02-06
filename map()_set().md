@@ -45,14 +45,13 @@ console.log(me.has('age')); // false
 you.clear();
 console.log(you.size); // 0
 ```
-
-<br/>
-
 <참고> Map 과 Object 비교
 ```
 Object 의 key 는 string 과 symbol(ES6) 만 가능하지만, map은 어떤 값도 가능
 Object에서는 크기를 추적해서 알 수 있지만, map은 손쉽게 얻을 수 있음(size)
 ```
+
+<br />
 
 2. Set
 ```
@@ -78,9 +77,6 @@ console.log(setB.has('b')); // false
 setB.clear();
 console.log(setB.size); // 0
 ```
-
-<br/>
-
 <참고>
 ```
 has() 는 indexOf() 보다 빠르다. 
