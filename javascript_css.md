@@ -10,12 +10,12 @@ function mainPage(idx) {
   const ptName = document.querySelector('input[name="name"]'), //
     mainMenu = document.querySelectorAll('.main-click'), //
       mainMenuText = document.querySelectorAll('.main-click > p > a'),
-      mainContentText = document.querySelector('#main-content > div > div'), //
-        mIdx = idx;
-  let menu = document.querySelector('#main-menu').style, //
-    backgroundCol = document.querySelector('#main-content').style, //
-      mainImg = document.querySelector('.main-img-change'), //
-        col; //
+        mainContentText = document.querySelector('#main-content > div > div'), //
+          mIdx = idx,
+            menu = document.querySelector('#main-menu').style, //
+              backgroundCol = document.querySelector('#main-content').style, //
+                mainImg = document.querySelector('.main-img-change'); //
+  let col; //
   //== contents change =====================================================
   switch(mIdx) {
     case 0:
