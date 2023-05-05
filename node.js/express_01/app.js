@@ -9,6 +9,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 });
 
+app.get('/index', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
 app.listen(port, () => {
   console.log(`Express server on port ${port}`)
 });
