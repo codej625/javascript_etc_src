@@ -25,17 +25,15 @@
     const response = await axios.get('https://my-json-server.typicode.com/typicode/demo/posts');
     const obj = response.data;
     let board;
-
+    
     obj.forEach((elements, idx) => {
-      board = [
-        `<option value="${elements.id}-1">${elements.title}</option>`, // columns 1
-        `<option value="${elements.id}-2">${elements.title}-2</option>`, // columns 2
-        `<option value="${elements.id}-3">${elements.title}-3</option>` // columns 3
+      board += [
+        `<option value="${idx}">${elements.title}</option>`, // columns
       ].join('');
-      console.log(board);
-      const html = document.querySelector(`.columns${idx+1} > select`); 
-      html.innerHTML = board;
     });
+    const html = document.querySelector(`.columns > select`);
+    
+    return html.innerHTML = board;
   } catch (error) {
     console.error('err => ', error);
   }
