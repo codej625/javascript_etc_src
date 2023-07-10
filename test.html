@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const query = location.href.search;
+    const params = query.split('&');
+    
+    const parameters = {};
+    
+    params.forEach(element => {
+      let pair = params.split('=');
+      let key = decodeURIComponent(pair[0]);
+      let value = decodeURIComponent(pair[1]);
+
+      parameters[key] = value;
+    });
+
+    console.log(parameters);
+    console.log(parameters.key);  
+  </script>
+</body>
+</html>
