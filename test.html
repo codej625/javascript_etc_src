@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocumentFragment 예제</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<title>board</title>
 </head>
+
 <body>
-    <h1>DocumentFragment 예제</h1>
-    <ul id="listContainer">
-        <!-- 여기에 리스트 아이템이 동적으로 추가될 예정입니다. -->
-    </ul>
-    <button id="addItemsButton">리스트 아이템 추가</button>
+	<script>
+		// Global Variable ==================================
+		const boardData = [
+			{ column1: '123', value: '첫 번째 게시물 내용' },
+			{ column1: '1', value: '첫 번째 게시물 내용' },
+			{ column1: '1255', value: '세 번째 게시물 내용' },
+			{ column1: '2553', value: '다섯 번째 게시물 내용' },
+			{ column1: '8998765', value: '다섯 번째 게시물 내용' },
+			{ column1: '22355', value: '첫 번째 댓글' },
+			{ column1: '24677', value: '두 번째 댓글' },
+			{ column1: '33333', value: '세 번째 댓글' },
+			{ column1: '9999776', value: '네 번째 댓글' },
+			{ column1: '949040', value: '다섯 번째 댓글' }
+		];
+		// IIFE =============================================
+		(() => {
+			createBoard();
+		})();
+		// Function =========================================
+		function createBoard() {
+			boardData.forEach((element1, idx) => {
+				console.log(`${idx +1} => `, element1.value);
 
-    <script>
-        // 버튼 클릭 시 리스트 아이템 추가하는 함수
-        function addListItems() {
-            const listContainer = document.getElementById('listContainer');
-            const fragment = document.createDocumentFragment();
+				boardData.forEach(element2 => {
+					const value = element2.column1;
+					const subVal = value.substring(0, value.length -1);
 
-            // 10개의 리스트 아이템을 동적으로 생성하여 fragment에 추가합니다.
-            for (let i = 0; i < 10; i++) {
-                const listItem = document.createElement('li');
-                listItem.textContent = `리스트 아이템 ${i + 1}`;
-                fragment.appendChild(listItem);
-            }
+					if (subVal !== 'comment') {
+						if(element1.value === element2.value) {
+							console.log()
+						}
 
-            // 최종적으로 fragment에 있는 모든 리스트 아이템을 한 번에 추가합니다.
-            listContainer.appendChild(fragment);
-        }
+					}
 
-        const addButton = document.getElementById('addItemsButton');
-        addButton.addEventListener('click', addListItems);
-    </script>
+				});
+			});
+		}
+		//===================================================
+
+
+	</script>
 </body>
+
 </html>
