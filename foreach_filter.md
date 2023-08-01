@@ -24,7 +24,7 @@ function removeDuplicatesByKeys(arr, keys) {
 
 2. 키값과 함
 ```javascript
-  let data = datas[7];
+  let data = datas[7]; // ex) data
   
   if (check !== false) {
     /* 중복 제거를 위한 키들 */
