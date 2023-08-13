@@ -27,7 +27,7 @@ const campaign = [ /* database로 대체 가능*/
   const getUrl = location.href; /* url을 가져온다. */
   const urlObj = new URL(getUrl); /* url을 객체화 한다. */
   const urlPathName = urlObj.pathname.substring(1); /* pathname에서 '/' 제외 */
-  const urlParameter = urlObj.search.substring(1);
+  const urlParameter = urlObj.search.substring(1); /* parameter에서 '?' 제외 */
   /* 
     1. urlPathName는 현재 path이다. ex) health
     2. getObjKeys의 키값과 urlPathName를 비교하여 getObjKeys에 속해 있는 값을 찾아낸다.
@@ -70,6 +70,10 @@ const campaign = [ /* database로 대체 가능*/
 })();
 // Function ==========================================================================================
 function closeBtn() {
-  // ...close logic
+  /*
+    ...close logic
+    true값이 있으면 url + parameter를 추가하여
+    조건을 갖고 다니게 한다.
+  */
 }
 ```
