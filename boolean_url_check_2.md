@@ -1,13 +1,30 @@
 # url parameter를 활용해서 조건을 on / off 시켜보자
 
 ```html
-<div class="alert-div" style="display: none;">
-  <p>TEST ALERT</p>
-  <button type="button" onclick="closeBtn();">CLOSE</button>
+<div id="main-section">
+  <div class="alert-div">
+    <p>TEST ALERT</p>
+    <button type="button" onclick="closeBtn();">CLOSE</button>
+  </div>
 </div>
 ```
 
+```css
+#main-section { position: relative; }
+.alert-div { position: absolute; }
+```
+
 ```javascript
+/*
+  두가지 조건이 필요하다.
+  첫번째는 파라미터 중 utm_source의 값을 확인 하는것.
+  두번째는 url의 path 중에 특정 값을 확인 하는것.
+  
+  위에 필수 조건을 전제로 로직을 만들어야 한다.
+  구현해야 하는 기능은
+  첫번째는 새로고침을 해도 alert창은 다시 뜨면 안된다.
+  두번째는 사파리 모바일 버전에서 alert 내장 함수를 사용할 시 백그라운드보다 alert창이 먼저 뜨는 이슈가 있다.
+*/
 // Global variable ===================================================================================
 
 // IIFE ==============================================================================================
