@@ -15,43 +15,55 @@
 ```
 
 ```javascript
-/*
-
-*/
-// Global variable ===================================================================================
+/* test value => ?utm_source=naverbs_pc&utm_medium=brand&utm_campaign=healthci&test=p&healthci=p */
 
 // IIFE ==============================================================================================
 (() => {
-  /* 
-    test query string => ?utm_source=naverbs_pc&utm_medium=brand&utm_campaign=healthci&healthci=true 
-  */
-  const url = location.search.split('?')[1];
-  const queryString = url.split('&');
+  // Variable ========================================================================================
+
+  let statusList = []; /* campaign의 상태 값들을 저장 */
+  let url;
+  let queryString;
+  let queryStringList;
+
+  // =================================================================================================
 
   const campaignList = [ /* 데이터베이스로 대체 가능 */
     'healthci',
     'cancer',
     'test'
   ];
-
-  const status = campaignStatus(queryString); /* 1. status check */
-  console.log(status);
-
-
-
-
-
-
-
-
   
+  try { /* 예외처리 */
+    url = location.href.split('?')[0];
+    queryString = location.search.split('?')[1];
+    queryStringList = queryString.split('&');
+  } catch {
+    console.log('null');
+
+    return false;
+  }
+
+  const status = campaignStatus(queryStringList); /* 1. status check */
+  const uniqueQueryStringList = [...new Set([...queryStringList, ...statusList])]; /* set의 특성을 이용하여 중복 제거 */
+
+  if (status) {
+    document.querySelector('.alert-div').style.display = "block"; /* 임시 alert */
+    // 화면은 변경하지 않고 url을 업데이트
+    history.pushState({}, "", `${url}?${uniqueQueryStringList.join('&')}`);
+  } else {
+    document.querySelector('.alert-div').style.display = "none"; /* 임시 alert */
+  }
+
+  // Function ========================================================================================
 
   function campaignStatus(status) { /* campaign, status check */
-    let returnVal = 0;
+    let returnVal = 0; /* return value */
     const pathName = location.pathname.split('/')[1]; /* path name */
 
     campaignList.forEach(pathChk => { /* path name check */
       if (pathName === `${pathChk}.html`) {
+        statusList.push(`${pathName.split('.')[0]}=p`);
         returnVal = 1;
       }
     });
@@ -64,12 +76,13 @@
       if (pathName === `${paramName}.html`) {
         returnVal = 0;
       }
+      if (paramValue === 'p') { /* p라는 값이 붙어 있으면 배열에 저장한다. */
+        statusList.push(`${paramName}=p`);
+      }
     });
     /* 리턴 값이 false면 아무 로직도 수행하지 않는다. */
     return (returnVal > 0) ? true : false;
-  }
-})();
-// Function ==========================================================================================
 
-//====================================================================================================
+  // =================================================================================================
+})();
 ```
