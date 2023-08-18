@@ -16,21 +16,59 @@
 
 ```javascript
 /*
-  두가지 조건이 필요하다.
-  첫번째는 파라미터 중 utm_source의 값을 확인 하는것.
-  두번째는 url의 path 중에 특정 값을 확인 하는것.
-  
-  위에 필수 조건을 전제로 로직을 만들어야 한다.
-  구현해야 하는 기능은
-  첫번째는 새로고침을 해도 alert창은 다시 뜨면 안된다.
-  두번째는 사파리 모바일 버전에서 alert 내장 함수를 사용할 시 백그라운드보다 alert창이 먼저 뜨는 이슈가 있다.
+
 */
 // Global variable ===================================================================================
 
 // IIFE ==============================================================================================
 (() => {
+  /* 
+    test query string => ?utm_source=naverbs_pc&utm_medium=brand&utm_campaign=healthci&healthci=true 
+  */
+  const url = location.search.split('?')[1];
+  const queryString = url.split('&');
 
-});
+  const campaignList = [ /* 데이터베이스로 대체 가능 */
+    'healthci',
+    'cancer',
+    'test'
+  ];
+
+  const status = campaignStatus(queryString); /* 1. status check */
+  console.log(status);
+
+
+
+
+
+
+
+
+  
+
+  function campaignStatus(status) { /* campaign, status check */
+    let returnVal = 0;
+    const pathName = location.pathname.split('/')[1]; /* path name */
+
+    campaignList.forEach(pathChk => { /* path name check */
+      if (pathName === `${pathChk}.html`) {
+        returnVal = 1;
+      }
+    });
+
+    status.forEach(param => { /* status check */
+      const paramCheck = param.split('='); /* parameter를 name과 value로 분리한다. */
+      const paramName = paramCheck[0]; /* name */
+      const paramValue = paramCheck[1]; /* value */
+
+      if (pathName === `${paramName}.html`) {
+        returnVal = 0;
+      }
+    });
+    /* 리턴 값이 false면 아무 로직도 수행하지 않는다. */
+    return (returnVal > 0) ? true : false;
+  }
+})();
 // Function ==========================================================================================
 
 //====================================================================================================
