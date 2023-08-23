@@ -4,50 +4,23 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<title>board</title>
+	<title>Document</title>
 </head>
 
 <body>
+
 	<script>
-		// Global Variable ==================================
-		const boardData = [
-			{ column1: '123', value: '첫 번째 게시물 내용' },
-			{ column1: '1', value: '첫 번째 게시물 내용' },
-			{ column1: '1255', value: '세 번째 게시물 내용' },
-			{ column1: '2553', value: '다섯 번째 게시물 내용' },
-			{ column1: '8998765', value: '다섯 번째 게시물 내용' },
-			{ column1: '22355', value: '첫 번째 댓글' },
-			{ column1: '24677', value: '두 번째 댓글' },
-			{ column1: '33333', value: '세 번째 댓글' },
-			{ column1: '9999776', value: '네 번째 댓글' },
-			{ column1: '949040', value: '다섯 번째 댓글' }
-		];
-		// IIFE =============================================
 		(() => {
-			createBoard();
+			const params = new URLSearchParams(window.location.search); /* 현주소의 파라미터를 가져온다. */
+			const queryString = params.toString(); /* 객체를 문자열로 변환시킨다. */
+			const splitElements = queryString.split('&'); /* 특정 문자열을 기준으로 자르고 배열값을 반환 한다. */
+			/* filter는 조건에 맞는 모든 요소를 모아 배열로 반환한다. */
+			const result = splitElements.filter(element => element === 'utm_source=google_pc' || element === 'utm_source=google_mo');
+			/* return되는 값이 있으면 값이 0보다 크다. */
+			if (result.length > 0) {
+				
+			}
 		})();
-		// Function =========================================
-		function createBoard() {
-			boardData.forEach((element1, idx) => {
-				console.log(`${idx +1} => `, element1.value);
-
-				boardData.forEach(element2 => {
-					const value = element2.column1;
-					const subVal = value.substring(0, value.length -1);
-
-					if (subVal !== 'comment') {
-						if(element1.value === element2.value) {
-							console.log()
-						}
-
-					}
-
-				});
-			});
-		}
-		//===================================================
-
 
 	</script>
 </body>
