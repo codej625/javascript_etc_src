@@ -20,23 +20,27 @@
 // IIFE ==============================================================================================
 (() => {
   // Variable ========================================================================================
+
+  let statusList = []; /* campaign의 상태 값들을 저장 */
   let url;
   let queryString;
   let queryStringList;
-  let statusList = []; /* campaign의 상태 값들을 저장 */
+
   // =================================================================================================
+
   const campaignList = [ /* 데이터베이스로 대체 가능 */
     'healthci',
     'cancer',
     'test'
   ];
 
-  const utmSourceList = [ /* 데이터베이스로 대체 가능 */
-    'google',
-    'kakao',
+  const utmSourceList = [
     'naver',
+    'kakao',
+    'google',
     'test'
   ];
+
   const utmCheck = utmSource();
   
   if (utmCheck) {
@@ -53,7 +57,7 @@
 
     return false;
   }
-  
+
   const status = campaignStatus(queryStringList); /* 1. status check */
   const uniqueQueryStringList = [...new Set([...queryStringList, ...statusList])]; /* set의 특성을 이용하여 중복 제거 */
 
@@ -64,7 +68,9 @@
   } else {
     document.querySelector('.alert-div').style.display = "none"; /* 임시 alert */
   }
+
   // Function ========================================================================================
+
   function campaignStatus(status) { /* campaign, status check */
     let returnVal = 0; /* return value */
     const pathName = location.pathname.split('/')[1]; /* path name */
@@ -91,7 +97,7 @@
     /* 리턴 값이 false면 아무 로직도 수행하지 않는다. */
     return (returnVal > 0) ? true : false;
   }
-  // Function ========================================================================================
+
   function utmSource() {
     /* 현재 URL 가져오기 */
     const url = new URL(location.href);
